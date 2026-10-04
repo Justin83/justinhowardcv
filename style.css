@@ -51,7 +51,7 @@ header, footer {
 }
 
 #contact-info {
-    margin-top: 1rem;
+    margin-top: 2.25rem;
     color: var(--ink);
     text-align: center;
     font-size: 16px;
@@ -344,8 +344,25 @@ main hr {
 
 /* Current Somerset Community College / KCTCS appointment accents */
 .contact-title {
-    color: var(--kctcs-accent);
+    font-size: 1.25em;
     font-weight: bold;
+}
+
+/* Email and phone under the name in the banner */
+.hero-contact {
+    margin: 0.4em 0 0;
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 1.4;
+}
+
+.hero-contact a {
+    color: white;
+    text-decoration: none;
+}
+
+.hero-contact a:hover {
+    text-decoration: underline;
 }
 
 .kctcs-system {
