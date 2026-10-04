@@ -38,6 +38,20 @@
         </div>
     </header>
 
+    <!-- Top navigation -->
+    <nav id="topnav" aria-label="Sections">
+        <ul>
+            <li><a href="#professional-summary"><i class="fas fa-user"></i> Summary</a></li>
+            <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+            <li><a href="#teaching-experience"><i class="fas fa-chalkboard-teacher"></i> Teaching</a></li>
+            <li><a href="#healthcare-experience"><i class="fas fa-stethoscope"></i> Healthcare</a></li>
+            <li><a href="#humanitarian-work"><i class="fas fa-hands-helping"></i> Humanitarian</a></li>
+            <li><a href="#military-experience"><i class="fas fa-medal"></i> Military</a></li>
+            <li><a href="#Certifications"><i class="fas fa-certificate"></i> Certifications</a></li>
+            <li><a href="#professional-organizations"><i class="fas fa-users"></i> Organizations</a></li>
+        </ul>
+    </nav>
+
     <!-- Contact Info -->
     <div id="contact-info">
         <p class="tight-paragraph contact-title">Instructor of Biology</p>
@@ -52,24 +66,6 @@
     </div>
 
     <div class="spacer"></div>
-    <!-- Sidebar -->
-    <nav id="sidebar">
-        <ul>
-            <li><a href="#contact-info"><i class="fas fa-address-card"></i> Contact Info</a></li>
-            <li><a href="#professional-summary"><i class="fas fa-user"></i> Professional Summary</a></li>
-            <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education and Training</a></li>
-            <li><a href="#teaching-experience"><i class="fas fa-chalkboard-teacher"></i> Teaching Experience</a></li>
-            <li><a href="#healthcare-experience"><i class="fas fa-stethoscope"></i> Healthcare Experience</a></li>
-            <li><a href="#humanitarian-work"><i class="fas fa-hands-helping"></i> Mission and Humanitarian Work</a></li>
-            <li><a href="#military-experience"><i class="fas fa-medal"></i> Military Experience</a></li>
-            <li><a href="#Certifications"><i class="fas fa-certificate"></i> Certifications</a></li>
-            <li><a href="#professional-organizations"><i class="fas fa-users"></i> Professional Organizations</a></li>
-            <li><a href="#top"><i class="fas fa-arrow-circle-up"></i> Return to the top</a></li>
-            <!-- Downloand Button -->
-            <li><a href="J_Howard_CV.pdf"><i class="fas fa-arrow-circle-down"></i>Download .pdf</a></li>
-            <li><a href="J_Howard_CV.docx"><i class="fas fa-arrow-circle-down"></i>Download .docx</a></li>
-        </ul>
-    </nav>
 
     <!-- Main content -->
     <main>
@@ -421,6 +417,25 @@
     <footer>
         <p>&copy; 2026 Justin N. Howard. All rights reserved.</p>
     </footer>
+    <script>
+        // Highlight the menu item for the section currently on screen
+        const navLinks = [...document.querySelectorAll('#topnav a')];
+        const linkFor = id => navLinks.find(a => a.hash === '#' + id);
+        const sectionLink = {
+            'continuing-education': 'education',
+            'previous-teaching-appointments': 'teaching-experience'
+        };
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const link = linkFor(sectionLink[entry.target.id] || entry.target.id);
+                if (!link) return;
+                navLinks.forEach(a => a.classList.remove('active'));
+                link.classList.add('active');
+            });
+        }, { rootMargin: '-25% 0px -65% 0px' });
+        document.querySelectorAll('main section').forEach(section => observer.observe(section));
+    </script>
 </body>
 
 </html>

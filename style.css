@@ -5,10 +5,10 @@
     --header-bg: #1b2f45;           /* banner, footer */
     --button-bg: #2a4866;           /* download and back-to-top buttons */
     --button-hover: #345a80;
-    --sidebar-bg: #f4f6f9;
-    --sidebar-border: #dde3ea;
-    --sidebar-ink: #243447;
-    --sidebar-hover: #e5ebf2;
+    --nav-bg: #ffffff;
+    --nav-border: #dde3ea;
+    --nav-ink: #243447;
+    --nav-hover: #eef3f8;
     --rule: #d6dde5;                /* section dividers, research border */
     --table-border: #dde3ea;
     --table-head: #eef2f6;
@@ -58,50 +58,61 @@ header, footer {
     line-height: 1.5;
 }
 
-/* Sidebar Styles */
-nav#sidebar {
-    width: 170px; /* Ensures enough space for content */
-    height: 100vh;
-    background-color: var(--sidebar-bg);
-    border-right: 1px solid var(--sidebar-border);
-    position: fixed;
+/* Top Navigation */
+nav#topnav {
+    position: sticky;
     top: 0;
-    left: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack items vertically */
-    justify-content: space-between; /* Space between items to push the download button to the bottom */
+    z-index: 10;
+    background-color: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: 0 2px 6px rgba(27, 47, 69, 0.06);
 }
 
-nav#sidebar ul {
+nav#topnav ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-grow: 1; /* Allows the list to fill the available space */
+    margin: 0 auto;
+    padding: 0 16px;
+    max-width: 1100px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-nav#sidebar ul li {
+nav#topnav ul li {
     margin: 0;
 }
 
-nav#sidebar ul li a {
-    color: var(--sidebar-ink);
-    text-decoration: none;
-    font-size: 14px; /* Adjusted font size for better fit */
+nav#topnav a {
     display: flex;
     align-items: center;
-    padding: 12px 15px; /* Adds padding around the text */
-    box-sizing: border-box; /* Ensures padding does not overflow */
+    gap: 7px;
+    padding: 14px 13px 12px;
+    color: var(--nav-ink);
+    text-decoration: none;
+    font-size: 15px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-nav#sidebar ul li a i {
-    margin-right: 8px; /* Space between icons and text */
-    font-size: 18px; /* Consistent icon size */
+nav#topnav a i {
+    font-size: 14px;
+    width: 16px;
+    text-align: center;
 }
 
-nav#sidebar ul li a:hover {
-    background-color: var(--sidebar-hover);
+nav#topnav a:hover {
+    background-color: var(--nav-hover);
+}
+
+nav#topnav a.active {
+    color: var(--kctcs-accent);
+    border-bottom-color: var(--kctcs-accent);
+}
+
+/* Keep section headings clear of the sticky menu when jumping to them */
+main section {
+    scroll-margin-top: 64px;
 }
 
 /* Download Button Styles in Sidebar */
@@ -126,9 +137,9 @@ nav#sidebar ul li a:hover {
 
 /* Main Content Styles */
 main {
-    margin-left: 170px; /* Width of the sidebar plus some spacing */
-    padding: 50px;
-    flex: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 50px 50px;
 }
 
 #banner {
@@ -192,7 +203,7 @@ main {
     text-align: center;
     table-layout: fixed;
     font-size: 18px;
-    width: 75%;
+    width: 100%;
     margin: 0 auto;
     overflow-x: auto;
     border-collapse: collapse;
@@ -245,10 +256,17 @@ main {
         overflow-wrap: normal;
     }
 
-    nav#sidebar {
-        width: 100%;
-        height: auto;
-        position: static;
+    /* Phone layout for the menu is still to be refined; for now it scrolls sideways */
+    nav#topnav ul {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 0 8px;
+    }
+
+    nav#topnav a {
+        padding: 12px 10px 10px;
+        font-size: 14px;
     }
 
     #previous-teaching-appointments, #previous-teaching-experience, #education, #teaching-experience, #healthcare-experience, #humanitarian-work, #military-experience, #certifications {
@@ -256,7 +274,6 @@ main {
     }
 
     main {
-        margin-left: 0;
         padding: 20px;
     }
 
