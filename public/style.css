@@ -388,3 +388,7 @@ main hr {
     background-color: #000;
     margin: 0em;
 }
+
+/* Compact CV download links (used when downloadable files are published). */
+#banner .cv-download-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
+#banner .cv-download-links .download-button { font-size: 12px; padding: 7px 15px; border-radius: 18px; }
